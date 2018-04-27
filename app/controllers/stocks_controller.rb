@@ -1,6 +1,8 @@
 class StocksController < ApplicationController
   def search
     @stock = Stock.search_for(params[:stock])
-    render 'users/my_portfolio'
+    respond_to do |format|
+      format.js { render partial: 'users/result' }
+    end
   end
 end
