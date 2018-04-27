@@ -1,7 +1,7 @@
 <h1>My portfolio</h1>
 <br/>
 <div id="search-stock">
-  <%= form_tag '#', method: :get, id: 'stock-search-form' do %>
+  <%= form_tag search_stocks_path, method: :get, id: 'stock-search-form' do %>
     <div class="form-group row no-padding text-center col-md-12">
       <div class="col-md-8">
         <%= text_field_tag :stock, params[:stock], placeholder: 'Input some ticker to search', autofocus:true,
@@ -15,3 +15,16 @@
     </div>
   <% end %>
 </div>
+<% if @stock %>
+  <div class="well results-block col-md-6">
+    <p>
+      Ticker: <%= @stock.ticker %>
+    </p>
+    <p>
+      Name: <%= @stock.name %>
+    </p>
+    <p>
+      Price: <%= @stock.price %>
+    </p>
+  </div>
+<% end %>
