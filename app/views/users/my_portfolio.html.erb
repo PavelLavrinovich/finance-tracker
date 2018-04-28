@@ -17,5 +17,9 @@
 </div>
 
 <div id="search-result">
-  <%= render 'result' %>
+  <%= render 'result', stock: @stock %>
+</div>
+
+<div id="stocks-block">
+  <%= render 'stocks/stock', stocks: current_user.stocks %>
 </div>

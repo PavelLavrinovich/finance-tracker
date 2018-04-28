@@ -1,23 +1,23 @@
-<% if @stock %>
-  <div class="well results-block col-md-6">
+<% if stock %>
+  <div class="well results-block col-md-11">
     <div>
       <p>
-        Ticker: <%= @stock.ticker %>
+        Ticker: <%= stock.ticker %>
       </p>
       <p>
-        Name: <%= @stock.name %>
+        Name: <%= stock.name %>
       </p>
       <p>
-        Price: <%= @stock.price %>
+        Price: <%= stock.price %>
       </p>
     </div>
     <div>
-      <% if current_user.stock_already_added?(@stock.ticker) %>
+      <% if current_user.stock_already_added?(stock.ticker) %>
         <p>
-          Tracking
+          <%= link_to 'Untrack', user_stock_path(stock), class: 'btn btn-danger', method: :delete %>
         </p>
       <% else %>
-        <%= link_to 'Track', user_stocks_path(stock_ticker: @stock.ticker), class: 'btn btn-primary', method: :post %>
+        <%= link_to 'Track', user_stocks_path(stock_ticker: stock.ticker), class: 'btn btn-primary', method: :post %>
       <% end %>
     </div>
   </div>
