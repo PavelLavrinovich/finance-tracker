@@ -5,7 +5,7 @@ class UserStocksController < ApplicationController
       stock = Stock.search_for(params[:stock_ticker])
       stock.save
     end
-    UserStocks.create(user: params[:user], stock: params[:stock_ticker])
+    UserStock.create(user: current_user, stock: stock)
     redirect_to my_portfolio_path
   end
 end

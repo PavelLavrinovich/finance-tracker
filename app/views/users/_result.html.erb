@@ -12,7 +12,13 @@
       </p>
     </div>
     <div>
-      <%= link_to 'Track', user_stocks_path(user: current_user, stock_ticker: @stock.ticker), class: 'btn btn-primary' %>
+      <% if current_user.stock_already_added?(@stock.ticker) %>
+        <p>
+          Tracking
+        </p>
+      <% else %>
+        <%= link_to 'Track', user_stocks_path(stock_ticker: @stock.ticker), class: 'btn btn-primary', method: :post %>
+      <% end %>
     </div>
   </div>
 <% end %>
