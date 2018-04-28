@@ -1,4 +1,4 @@
-<h1>My portfolio</h1>
+<h1><%= current_user.first_name %>'s portfolio</h1>
 <br/>
 <div id="search-stock">
   <%= form_tag search_stocks_path, method: :get, id: 'stock-search-form', remote: true do %>
