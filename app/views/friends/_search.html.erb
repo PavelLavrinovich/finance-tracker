@@ -1,0 +1,19 @@
+<div id="search-friends">
+  <%= form_tag search_friends_path, method: :get, id: 'friend-search-form', remote: true do %>
+    <div class="form-group row no-padding text-center col-md-12">
+      <div class="col-md-8">
+        <%= text_field_tag :search_param, params[:search_param], placeholder: 'Input name of email', autofocus:true,
+                           class: 'form-control search-tag input-lg' %>
+      </div>
+      <div class="col-md-2">
+        <%= button_tag(type: :submit, class: 'btn btn-lg btn-success') do %>
+          <i class="fa fa-search"></i> Search
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div id="search-result">
+  <%= render 'result', stock: @stock %>
+</div>

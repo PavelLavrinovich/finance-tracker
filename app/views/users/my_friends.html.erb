@@ -1,3 +1,5 @@
 <h1><%= current_user.first_name %>'s friends</h1>
 
-<%= render 'user', users: [current_user] %>
+<%= render 'friends/search' %>
+
+<%= render 'user', users: @friends %>

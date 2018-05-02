@@ -1,5 +1,21 @@
 <% users.each do |user| %>
-  <p>
-    <%= user.first_name %> <%= user.last_name %>
-  </p>
+  <div class="well results-block col-md-11">
+    <p>
+      <%= user.first_name %> <%= user.last_name %>
+    </p>
+    <div>
+      <% if current_user.friends.include?(user) %>
+        <p>
+          <%= link_to 'Remove from friends', friendship_path(user), class: 'btn btn-danger col-md-3', method: :delete %>
+        </p>
+      <% else %>
+        <p>
+          <%= link_to 'Add to friends', friendships_path(friend: user), class: 'btn btn-success col-md-3', method: :post %>
+        </p>
+      <% end %>
+      <p>
+        <%= link_to 'View a profile', user_path(user), class: 'btn btn-primary col-md-3' %>
+      </p>
+    </div>
+  </div>
 <% end %>

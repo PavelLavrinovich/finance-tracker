@@ -11,8 +11,22 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  SEARCH_COLUMNS = ['first_name', 'last_name', 'email']
+
   def stock_already_added?(ticker_symbol)
     stock = Stock.find_by_ticker(ticker_symbol)
     stocks.include?(stock)
+  end
+
+  def self.search(search_param)
+    search_param.strip!
+    search_param.downcase!
+    SEARCH_COLUMNS.inject([]) { |result, column| result + matches(column, search_param) }.uniq
+  end
+
+  private
+
+  def self.matches(column, search_param)
+    User.where("#{column} like ?", "%#{search_param}%")
   end
 end
